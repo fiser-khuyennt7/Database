@@ -1,0 +1,68 @@
+﻿create database example;//tao co so du lieu example
+
+use example;
+create table User(
+
+    id INT(5) NOT NULL,
+	
+    name varchar(45),
+
+    primary key(id)
+    
+);
+
+INSERT INTO User(id , name )
+  
+value (1,'hoang'),
+
+	(2,'quynh'),
+        
+	(3,'hieu'),
+
+                (4,'my');
+
+
+create table Lover(
+    id INT(5) NOT NULL,
+    user1 INT(5),
+    user2 INT(5),
+    primary key(id)
+);
+
+insert into lover(id,user1,user2)
+
+  value (1,1,2),
+
+	(2,3,4);
+SELECT U.name as boy, G.name as girl
+
+FROM (User as U JOIN Lover as L ON U.id = L.user1) JOIN User as G ON L.user2 = G.id ;
+
+select * from user;
+
+alter table User add money INT after name ;
+alter table User add married INT(5) after name ;
+
+UPDATE `example`.`User` SET `married`='1', `money`='0' WHERE `id`='1';
+
+UPDATE `example`.`User` SET `married`='0', `money`='1000' WHERE `id`='2';
+
+UPDATE `example`.`User` SET `married`='0', `money`='2000000' WHERE `id`='3';
+
+UPDATE `example`.`User` SET `married`='0', `money`='1000000' WHERE `id`='4';
+
+
+select * from User where married = 0;
+select * from User where married = 0 and money > 1000;
+
+update User set DoB = '1995/1/1' where id = 1;
+update User set DoB = '1994/1/1' where id = 2;
+
+update User set DoB = '1994/1/1' where id = 3;
+
+update User set DoB = '1994/1/1' where id = 4;     
+
+
+select * from User where Dob < '1995/1/1' and money > 1000;
+select max(money) from User;
+select DoB,count(DoB) from User group by DoB order by count(DoB) ;
